@@ -1,0 +1,16 @@
+services:
+  minio:
+    image: cgr.dev/chainguard/minio:latest
+    container_name: dpw8-minio
+    user: "0:0"
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: dpw8admin
+      MINIO_ROOT_PASSWORD: dpw8secret123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+volumes:
+  minio_data:
